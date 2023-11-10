@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LinkInNation : Social Media Sharing Link Generator App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0ecfd3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>LinkInNation</h1>
+        <h2>Social Media auto-sharing Link Generator</h2>
+        <form id="sharingForm">
+            <label for="text">Text:</label>
+            <input type="text" id="text" name="text" placeholder="Enter your text (Only URL supported for LinkedIn)">
+            
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Your username without @">
+            
+            <label for="platform">Select platform:</label>
+            <select id="platform" name="platform">
+                <option value="twitter">Twitter</option>
+                <!--<option value="facebook">Facebook</option>-->
+                <option value="reddit">Reddit</option>
+                <option value="linkedin">LinkedIn</option>
+            </select>
+            
+            <button type="button" onclick="submitForm()">Share</button>
+        </form>
+        Made with <svg viewBox="0 0 1792 1792" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" style="height: 0.8rem;"><path d="M896 1664q-26 0-44-18l-624-602q-10-8-27.5-26T145 952.5 77 855 23.5 734 0 596q0-220 127-344t351-124q62 0 126.5 21.5t120 58T820 276t76 68q36-36 76-68t95.5-68.5 120-58T1314 128q224 0 351 124t127 344q0 221-229 450l-623 600q-18 18-44 18z" fill="#e25555"></path></svg> by Developer Nation
+        <script>
+
+        function submitForm() {
+            var textValue = document.getElementById("text").value;
+            var usernameValue = document.getElementById("username").value;
+            var platformValue = document.getElementById("platform").value;
+            
+            if (platformValue === "twitter") {
+                var message = "https://twitter.com/intent/tweet?via=" + usernameValue + "&" + "text=" + textValue;
+            }
+
+            //else if (platformValue === "facebook") {
+            //    var message = "https://www.facebook.com/sharer/sharer.php?u=" + usernameValue + "&" + "quote=" + textValue;
+            //}
+
+            else if (platformValue === "reddit") {
+                var message = "https://www.reddit.com/submit?title=" + "Shared from:" + " " + usernameValue + "&" + "text=" + textValue;
+            }
+
+            else if (platformValue === "linkedin") {
+                var message = "https://www.linkedin.com/sharing/share-offsite/?url=" + textValue;
+            }
+
+
+            var copyTextArea = document.createElement("textarea");
+            copyTextArea.value = message;
+            document.body.appendChild(copyTextArea);
+            copyTextArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(copyTextArea);
+            
+            alert("Content copied to clipboard:\n\n" + message);
+        }
+    </script>
+</body>
+</html>
+
+
