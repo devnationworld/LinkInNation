@@ -1,2 +1,2 @@
 # LinkInNation
-A small web utility to create Social Media Shareable Links 
+A small web utility to create Social Media Shareable Links created by Developer Nation
